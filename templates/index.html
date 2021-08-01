@@ -1,17 +1,117 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  </head>
+</head>
+<body>
+	<form action="http://127.0.0.1:5000/predict" id="predictform" method = "POST">
+    <p>      
+      <label for="Neighbourhood">Choose a Neighbourhood:</label>
+      <select id="Neighbourhood" name="neighbourhoodchoice" form="predictform">
+        <option value="Hyde Park">Hyde Park</option>
+        <option value="South Lawndale">South Lawndale</option>
+        <option value="West Town">West Town</option>
+        <option value="Lincoln Park">Lincoln Park</option>
+        <option value="Near North Side">Near North Side</option>
+        <option value="Logan Square">Logan Square</option>
+        <option value="Uptown">Uptown</option>
+        <option value="North Center">North Center</option>
+        <option value="Lake View">Lake View</option>
+        <option value="Irving Park">Irving Park</option>
+        <option value="Portage Park">Portage Park</option>
+        <option value="Pullman">Pullman</option>
+        <option value="Near South Side">Near South Side</option>
+        <option value="West Ridge">West Ridge</option>
+        <option value="Near West Side">Near West Side</option>
+        <option value="Edgewater">Edgewater</option>
+        <option value="Woodlawn">Woodlawn</option>
+        <option value="Albany Park">Albany Park</option>
+        <option value="Kenwood">Kenwood</option>
+        <option value="Rogers Park">Rogers Park</option>
+        <option value="Lincoln Square">Lincoln Square</option>
+        <option value="Grand Boulevard">Grand Boulevard</option>
+        <option value="Forest Glen">Forest Glen</option>
+        <option value="Loop">Loop</option>
+        <option value="East Garfield Park">East Garfield Park</option>
+        <option value="North Lawndale">North Lawndale</option>
+        <option value="Oakland">Oakland</option>
+        <option value="Beverly">Beverly'</option>
+        <option value="Lower West Side">Lower West Side</option>
+        <option value="Chatham">Chatham</option>
+        <option value="Avondale">Avondale</option>
+        <option value="Norwood Park">Norwood Park</option>
+        <option value="Washington Park">Washington Park</option>
+        <option value="Humboldt Park">Humboldt Park</option>
+        <option value="Morgan Park">Morgan Park</option>
+        <option value="Dunning">Dunning</option>
+        <option value="West Lawn">West Lawn</option>
+        <option value="South Shore">South Shore</option>
+        <option value="Bridgeport">Bridgeport'</option>
+        <option value="Armour Square'">Armour Square'</option>
+        <option value="South Deering">South Deering</option>
+        <option value="West Garfield Park">West Garfield Park</option>
+        <option value="Hermosa">Hermosa</option>
+        <option value="Mckinley Park">Mckinley Park</option>
+        <option value="Douglas">Douglas</option>
+        <option value="Hegewisch">Hegewisch</option>
+        <option value="Jefferson Park">Jefferson Park</option>
+        <option value="West Elsdon">West Elsdon</option>
+        <option value="Austin">Austin</option>
+        <option value="Ashburn">Ashburn</option>
+        <option value="Belmont Cragin">Belmont Cragin</option>
+        <option value="Greater Grand Crossing">Greater Grand Crossing</option>
+        <option value="Garfield Ridge">Garfield Ridge</option>
+        <option value="Brighton Park">Brighton Park</option>
+        <option value="North Park">North Park</option>
+        <option value="Ohare">Ohare</option>
+        <option value="Edison Park">Edison Park</option>
+        <option value="Englewood">Englewood</option>
+        <option value="Archer Heights">Archer Heights</option>
+        <option value="South Chicago">South Chicago</option>
+        <option value="Avalon Park">Avalon Park</option>
+        <option value="Chicago Lawn">Chicago Lawn</option>
+        <option value="Gage Park">Gage Park</option>
+        <option value="Montclare">Montclare</option>
+        <option value="Roseland">Roseland</option>
+        <option value="Calumet Heights">Calumet Heights</option>
+        <option value="New City">New City</option>
+        <option value="Fuller Park">Fuller Park</option>
+        <option value="Auburn Gresham">Auburn Gresham</option>
+        <option value="West Pullman">West Pullman</option>
+        <option value="West Englewood">West Englewood</option>
+        <option value="Burnside">Burnside</option>
+        <option value="Washington Heights">Washington Heights</option>
+        <option value="Mount Greenwood">Mount Greenwood</option>
+        <option value="Riverdale">Riverdale</option>
+        <option value="Clearing">Clearing</option>
+        <option value="East Side">East Side</option>
 
-  <body>
-     <h1>Enter data?</h1>
-    <form method="POST" action = "/send_data">
-      <div class = "form-group">
-        <input type="text" name = "pay">
-      </div>
-      <input class="btn btn-primary" type="submit" value="Pay Now">
-    </form>
 
-  </body>
+
+      </select> 
+    </p>
+    <p>City <input type = "text" name = "City" /></p>
+    <p>Country <input type = "text" name = "Country" /></p>
+    <p>
+      <label for="cars">Choose a car:</label>
+      <select id="cars" name="carchoice" form="predictform">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="bmw">BMW</option>
+        <option value="audi">Audi</option>
+      </select>
+    </p>
+    <p>
+      <label for="dinos">Choose a dinosaur:</label>
+      <select id="dinos" name="dinochoice" form="predictform">
+        <option value="bronto">bronto</option>
+        <option value="trex">trex</option>
+        <option value="raptor">raptor</option>
+        <option value="stego">stego</option>
+      </select>
+    </p>
+    <p><input type = "submit" value = "Submit" /></p>
+	</form>
+</body>
+
 </html>
