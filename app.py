@@ -22,6 +22,12 @@ if __name__ == '__main__':
 
 app = Flask(__name__)
 
+@app.route("/api/v1.0/neighbourhood")
+def neighbourhood():
+    results = session.query(prd.name).all()
+    all_neighbourhood= list(np.ravel(results))
+    return jsonify(all_neighbourhood)
+
 @app.route('/',methods = ['GET'])
 def show_index.html():
     return render_template('index.html')
