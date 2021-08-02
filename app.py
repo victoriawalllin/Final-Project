@@ -1,7 +1,5 @@
 import pandas as pd
 import pickle
-from flask import Flask, jsonify, render_template, request, redirect
-from flask_cors import CORS, cross_origin
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.pipeline import Pipeline
@@ -10,33 +8,35 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.feature_selection import SelectFromModel
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import GradientBoostingClassifier
-# from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error
 from flask import Flask, render_template, request
 
-# with open(f'victoria.pkl', 'rb') as f:
-#     m = pickle.load(f)
-# app = flask.Flask(__name__, template_folder='templates')
-# @app.route('/')
-# def main():
-#     return(flask.render_template('main.html'))
-# if __name__ == '__main__':
-#     app.run()
+with open(f'victoria.pkl', 'rb') as f:
+    m = pickle.load(f)
+app = flask.Flask(__name__, template_folder='templates')
+@app.route('/')
+def main():
+    return(flask.render_template('main.html'))
+if __name__ == '__main__':
+    app.run()
 
 app = Flask(__name__)
-cors = CORS(app)
 
-@app.route('/')
-@cross_origin()
-def show_index.html():
-    return render_template('form.html')
+@app.route("/api/v1.0/neighbourhood")
+def neighbourhood():
+    results = session.query(prd.name).all()
+    all_neighbourhood= list(np.ravel(results))
+    return jsonify(all_neighbourhood)
 
-@app.route('/predict', methods = ['POST'])
-@cross_origin()
-def predict():
-    if request.method == "POST":
-        form_data = request.form
-        print(form_data)
-        if 
+@app.route('/',methods = ['GET'])
+def show_index.html:
+    return render_template('index.html')
+
+@app.route('/send_data', methods = ['POST'])
+def get_data_from_html():
+        pay = request.form['pay']
+        print ("Pay is " + pay)
+        return "Data sent. Please check your program log"
 
 if __name__ == '__main__':
-    app.run(debbug=True)
+    app.run(host="0.0.0.0", port=5000, debbug=True)
