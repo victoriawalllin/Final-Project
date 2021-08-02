@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+  <p> your inputs: </p>
+    {% for key, value in form.items() %}
+      <p>{{ key }}: {{ value }}</p>
+    {% endfor %}
+  <p> your prediction:
+  <strong> {{ y }} </strong>
+  </p>
+</body>
+
+</html>
