@@ -29,7 +29,7 @@ def neighbourhood():
     return jsonify(all_neighbourhood)
 
 @app.route('/',methods = ['GET'])
-def show_index.html:
+def show_index():
     return render_template('index.html')
 
 @app.route('/send_data', methods = ['POST'])
@@ -39,4 +39,4 @@ def get_data_from_html():
         return "Data sent. Please check your program log"
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debbug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
