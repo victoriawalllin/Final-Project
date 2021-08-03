@@ -1,42 +1,45 @@
+from flask import Flask, jsonify, render_template, request, redirect
+from flask_cors import CORS, cross_origin
+import joblib
 import pandas as pd
-import pickle
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.pipeline import Pipeline
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.feature_selection import SelectFromModel
-from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.metrics import mean_squared_error
-from flask import Flask, render_template, request
 
-with open(f'victoria.pkl', 'rb') as f:
-    m = pickle.load(f)
-app = flask.Flask(__name__, template_folder='templates')
-@app.route('/')
-def main():
-    return(flask.render_template('main.html'))
-if __name__ == '__main__':
-    app.run()
-
+# Create an instance of Flask
 app = Flask(__name__)
+cors = CORS(app)
 
-@app.route("/api/v1.0/neighbourhood")
-def neighbourhood():
-    results = session.query(prd.name).all()
-    all_neighbourhood= list(np.ravel(results))
-    return jsonify(all_neighbourhood)
+m = joblib.load('victoria.pkl')
 
-@app.route('/',methods = ['GET'])
-def show_index():
-    return render_template('index.html')
 
-@app.route('/send_data', methods = ['POST'])
-def get_data_from_html():
-        pay = request.form['pay']
-        print ("Pay is " + pay)
-        return "Data sent. Please check your program log"
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+# Route to render index.html template using data from Mongo
+@app.route("/")
+@cross_origin()
+def home():
+    # Find one record of data from the mongo database
+
+    # Return template and data
+    return render_template("form.html")
+
+# Route that will trigger the scrape function
+@app.route("/predict", methods=["POST"])
+@cross_origin()
+def predict():
+    if request.method == 'POST':
+        form_data = request.form
+        print(form_data)
+        prd = pd.DataFrame({
+            "neighbourhood" : [form_data["neighbourhoodchoice"]],
+            "room_type":[form_data["roomchoice"]],
+            "minimum_nights" : [form_data["Minimum Nights"]],
+            "number_of_reviews" : [form_data["Number of Reviews"]],
+            "reviews_per_month":[form_data["Reviews per month"]],
+            "availability_365": [form_data["Days Available out of the Year"]]
+})
+        # do more calculations here with the input data which is
+        # in the form_data dictionary
+        letter = m.predict(prd)
+        return render_template('predict.html', form=form_data, letter=letter)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
