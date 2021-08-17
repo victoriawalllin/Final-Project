@@ -1,3 +1,5 @@
 # Final-Project
 
+In this project, Walter, Jacqueline, and I cleaned a large data set from Kaggle about Chicago Airbnb data.  We got rid of all null variables in the data set using pandas.  The goal of the project was to use the data to predict the price of Airbnbs.  We split the prices into four different sections: expensive, reasonable, affordable, and cheap.  Once we built out our model, it would predict the price using one of these four categories.  We split our data into categorical and numerical data and used the GradientBoostingClassifier in our model.  Once we had built out the pipelines, we ran our test and training data to get each respective score.  After building out the model and making sure it was valid with our scores, we saved our model and could then run it via a flask app.  We built out a simple HTML page to deploy our model and it was able to make predictions depending on the data that we input.  We have also deployed it through Heroku, using the link below.
+
 Heroku app deployment link: https://final-project20333.herokuapp.com/
